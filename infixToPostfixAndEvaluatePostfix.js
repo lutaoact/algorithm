@@ -7,12 +7,42 @@ let MAP = {
   '*': 2,
   '/': 2,
 };
+let OP_FUNC_MAP = {
+  '+': (v1, v2) => { return v1 + v2},
+  '-': (v1, v2) => { return v1 - v2},
+  '*': (v1, v2) => { return v1 * v2},
+  '/': (v1, v2) => { return v1 / v2},
+};
 
 //测试数字用一位数，因为我没用空格分隔
 //let inputString = '((1+2)*((3-4)*(5-6)))';//12+34-56-**
-//let inputString = '(1+2)*((3-4)*(5-6))';//12+34-56-**
-let inputString = '8*2+3*5';//82*35*+
-console.log(infixToPostfix(inputString));
+let inputString = '(1+2)*((3-4)*(5-6))';//12+34-56-**
+//let inputString = '8*2+3*5';//82*35*+
+//console.log(infixToPostfix(inputString));
+console.log(evaluatePostfix(infixToPostfix(inputString)));
+
+function evaluatePostfix(inputString) {
+  let ins = inputString.split('');
+  let vals = [];
+  for (let i = 0; i < ins.length; i++) {
+    let c = ins[i];
+    SWITCH:
+    switch (c) {
+      case '+':
+      case '-':
+      case '*':
+      case '/':
+        let v2 = Number(vals.pop());
+        let v1 = Number(vals.pop());
+        vals.push(OP_FUNC_MAP[c](v1, v2));
+        break SWITCH;
+      default:
+        vals.push(c);
+        break SWITCH;
+    }
+  }
+  return vals[0];
+}
 
 function infixToPostfix(inputString) {
   let ins = inputString.split('');
