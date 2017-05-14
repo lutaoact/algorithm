@@ -28,8 +28,9 @@ function getResult(n) {
     if (current.next === current) return current.value;
     if (i % 3 === 0) {
       prev.next = current.next;
+    } else {
+      prev = current;
     }
-    prev = current;
     current = current.next;
   }
 }
