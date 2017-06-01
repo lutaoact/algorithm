@@ -1,6 +1,6 @@
 'use strict';
 
-let a = [-18, -15, -12, -7, 0, 0, 2, 3, 12, 15, 15, 17, 18];
+let a = [-18, -15, -12, -7, 0, 0, 0, 0, 2, 3, 12, 15, 15, 17, 18];
 console.log(TwoSumFaster(a));
 
 function TwoSumFaster(a) {
