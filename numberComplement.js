@@ -28,13 +28,13 @@ var findComplement = function(num) {
     if (bit) {
       result += bit << i
     }
-    num >>= 1;
     if (num === 1 || num === 0) {
       break;
     }
+    num >>= 1;
   }
   return result;
 };
 
-console.log(findComplement(1));
+console.log(findComplement(8));
 //console.log(findComplement(2147483646));
