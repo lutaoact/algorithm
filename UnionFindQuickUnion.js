@@ -1,7 +1,8 @@
 'use strict';
 
-let N = 10;
-let pairs = require('./tinyUF');
+let pairs, N;
+N = 10, pairs = require('./tinyUF');//2 components
+//N = 625, pairs = require('./mediumUF');//3 components
 
 let id = [];
 for (let i = 0; i < N; i++) {
@@ -15,18 +16,17 @@ function connected(p, q) {
 }
 
 function find(p) {
-  return id[p];
+  while (p !== id[p]) p = id[p];
+  return p;
 }
 
 function union(p, q) {
-  let pId = find(p);
-  let qId = find(q);
-  if (pId === qId) return;
-  for (let i = 0; i < N; i++) {
-    if (id[i] === pId) id[i] = qId;
-  }
-  count--;//两个分量归并，连通分量总数减一
-  console.log(id);
+  let pRoot = find(p);
+  let qRoot = find(q);
+  if (pRoot === qRoot) return;
+
+  id[pRoot] = qRoot;
+  count--;
 }
 
 for (let i = 0; i < pairs.length; i++) {
@@ -36,4 +36,5 @@ for (let i = 0; i < pairs.length; i++) {
   union(p, q);
   console.log(p + ' ' + q);
 }
+console.log(id);
 console.log(count + ' components');
