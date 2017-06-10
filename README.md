@@ -1,2 +1,4 @@
 # algorithm
-algorithm exercise
+
+* leetcode exercise
+* algorithm 4th edition exercise
