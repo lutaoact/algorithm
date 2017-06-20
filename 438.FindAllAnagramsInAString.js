@@ -61,7 +61,6 @@ var findAnagrams = function(s, p) {
     while (counter === 0) {
       if (end - begin === pN) results.push(begin);
 
-
       let tmpc = s[begin];
       if (map[tmpc] !== undefined) {
         map[tmpc]++;
