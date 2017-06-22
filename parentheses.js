@@ -4,9 +4,10 @@ let str = '[()]{}{[()()]()}';
 //let str = '[(])';
 
 function check(str) {
-  let a = str.split(''), stack = [];
-  for (let i = 0; i < a.length; i++) {
-    let c = a[i];
+  let N = s.length, stack = [], map = {'[': ']', '{': '}', '(': ')'};
+
+  for (let i = 0; i < N; i++) {
+    let c = s[i];
     switch (c) {
       case '[':
       case '{':
@@ -14,16 +15,12 @@ function check(str) {
         stack.push(c);
         break;
       case ']':
-        if (stack.pop() !== '[') return false;
-        break;
       case '}':
-        if (stack.pop() !== '{') return false;
-        break;
       case ')':
-        if (stack.pop() !== '(') return false;
+        if (map[stack.pop()] !== c) return false;
         break;
     }
   }
-  return true;
+  return stack.length === 0;
 }
 console.log(check(str));
