@@ -9,6 +9,10 @@ Follow up:
 Could you do it in O(n) time and O(1) space?
 */
 
+/*
+分析：利用fast和slow两个指针遍历，当fast遍历结束的时候，slow刚好会到一半，将slow这一办的结点反转，然后把fast指针重置为链表开头，两个指针同步向后移动，遇到值不相等，则为false。这里需要注意，检查值是否相等的循环结束条件应该是slow === null，因为slow列表长度只有一半，而fast是重置过的head，也就是有整个列表的长度
+*/
+
 /**
  * Definition for singly-linked list.
  * function ListNode(val) {
