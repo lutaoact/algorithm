@@ -41,6 +41,7 @@ var getMinimumDifference = function(root) {
     stack.push(node);
   }
 
+  //栈中最接近的两个元素总是被连续pop出来，一定要理解这个关键
   while (stack.length > 0) {
     node = stack.pop();
     if (prev !== null && node.val - prev < min) min = node.val - prev;
@@ -60,7 +61,7 @@ var getMinimumDifference = function(root) {
 
 getMinimumDifference = function(root) {
   let min = Infinity, prev = null;
-  function inOrder(node) {
+  function inOrder(node) {//中序遍历
     if (node === null) return;
     inOrder(node.left);
     if (prev !== null && node.val - prev < min) min = node.val - prev;
