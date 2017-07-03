@@ -33,4 +33,32 @@ var sortedArrayToBST = function(nums) {
   }
 };
 
+sortedArrayToBST = function(nums) {
+  if (nums.length === 0) return null;
+  let head = new TreeNode(0);
+  let nodeStack = [], leftIndexStack = [], rightIndexStack = [];
+  nodeStack.push(head);
+  leftIndexStack.push(0);
+  rightIndexStack.push(nums.length - 1);
+
+  while (nodeStack.length > 0) {
+    let node = nodeStack.pop(), left = leftIndexStack.pop(), right = rightIndexStack.pop();
+    let mid = ((right - left) / 2 | 0) + left;
+    node.val = nums[mid];
+    if (left <= mid - 1) {
+      node.left = new TreeNode(0);
+      nodeStack.push(node.left);
+      leftIndexStack.push(left);
+      rightIndexStack.push(mid - 1);
+    }
+    if (mid + 1 <= right) {
+      node.right = new TreeNode(0);
+      nodeStack.push(node.right);
+      leftIndexStack.push(mid + 1);
+      rightIndexStack.push(right);
+    }
+  }
+  return head;
+};
+
 console.log(sortedArrayToBST([1, 2, 3, 5, 8, 9, 10]));
