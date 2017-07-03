@@ -47,7 +47,7 @@ isPerfectSquare = function(num) {
 isPerfectSquare = function(num) {
   let lo = 1, hi = num, mid, quotient;
   while (lo <= hi) {
-    mid = ((hi - lo) / 2 | 0 + lo);
+    mid = ((hi - lo) / 2 | 0) + lo;
     quotient = num / mid;
     if (quotient > mid) {
       lo = mid + 1;
