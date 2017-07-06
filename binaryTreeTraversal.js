@@ -9,7 +9,6 @@ function TreeNode(val) {
 }
 
 /*
-
      4
    /   \
   2     7
