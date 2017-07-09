@@ -42,5 +42,29 @@ var longestConsecutive = function(nums) {
   return longest;
 };
 
+longestConsecutive = function(nums) {
+  let N = nums.length, longest = 0, used = {};
+
+  nums.forEach((n) => { used[n] = false; });
+
+  for (let i = 0; i < N; i++) {
+    let num = nums[i], length = 1;
+    if (used[num]) continue;
+
+    for (let j = num + 1; used[j] !== undefined; j++) {
+      used[j] = true;
+      length++;
+    }
+
+    for (let j = num - 1; used[j] !== undefined; j--) {
+      used[j] = true;
+      length++;
+    }
+    if (length > longest) longest = length;
+  }
+
+  return longest;
+};
+
 console.log(longestConsecutive([100, 4, 200, 1, 3, 2, 0, 5, 7, 6]));
 console.log(longestConsecutive([0]));
