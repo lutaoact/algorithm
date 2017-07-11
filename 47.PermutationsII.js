@@ -1,11 +1,27 @@
 'use strict';
 
+/*
+47. Permutations II
+
+Given a collection of numbers that might contain duplicates, return all possible unique permutations.
+
+For example,
+[1,1,2] have the following unique permutations:
+[
+  [1,1,2],
+  [1,2,1],
+  [2,1,1]
+]
+*/
+
 /**
  * @param {number[]} nums
  * @return {number[][]}
  */
 var permuteUnique = function(nums) {
   let N = nums.length, results = [], tmpList = [], visited = Array(N);
+  nums.sort((a, b) => { return a - b; });//先排序
+
   helper(tmpList, nums, visited);
   return results;
 
@@ -20,10 +36,8 @@ var permuteUnique = function(nums) {
 
       visited[i] = true;
       tmpList.push(nums[i]);
-      console.log('push', tmpList, visited);
       helper(tmpList, nums, visited);
       tmpList.pop();
-      console.log('pop', tmpList, visited);
       visited[i] = false;
     }
   }
