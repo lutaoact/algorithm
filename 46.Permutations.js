@@ -28,7 +28,7 @@ var permute = function(nums) {
 
   function helper(N, nums) {
     if (N <= 1) {
-      results.push(nums.map(n => n))
+      results.push(nums.slice());//slice似乎比nums.map(n => n)的效率高一些
       return;
     }
     for (let i = 0; i < N; i++) {
@@ -44,6 +44,32 @@ var permute = function(nums) {
     nums[b] = tmp;
   }
 };
+
+//设计数组元素的动态增删，比上面交换数组元素似乎慢一些
+permute = function(nums) {
+  let N = nums.length, results = [], tmpList = [], visited = Array(N);
+  helper(tmpList, nums, visited);
+  return results;
+
+  function helper(tmpList, nums, visited) {
+    if (tmpList.length === N) {
+      results.push(tmpList.slice());
+      return;
+    }
+    for (let i = 0; i < N; i++) {
+      if (visited[i]) continue;
+
+      visited[i] = true;
+      tmpList.push(nums[i]);
+      console.log(tmpList, visited);
+      helper(tmpList, nums, visited);
+      tmpList.pop();
+      visited[i] = false;
+    }
+  }
+};
+
 console.log(permute([1,2,3]));
+console.log(permute([1,2,3,4]));
 console.log(permute([1]));
 console.log(permute([]));
