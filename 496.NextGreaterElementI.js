@@ -49,6 +49,40 @@ var nextGreaterElement = function(findNums, nums) {
   return results;
 };
 
+nextGreaterElement = function(findNums, nums) {
+  let map = new Map(), stack = [];
+  nums.forEach((num) => {
+    while (stack.length > 0 && stack[stack.length - 1] < num) {
+      map.set(stack.pop(), num);
+    }
+    stack.push(num);
+  });
+
+  let fN = findNums.length;
+  for (let i = 0; i < fN; i++) {
+    findNums[i] = map.get(findNums[i]) || -1;
+  }
+  return findNums;
+};
+
+//这个方法和上面的方法完全一样，只是map使用了字面量对象，比上面的速度更快，有空得调研一下，js的这种新结构是不是有效率问题
+nextGreaterElement = function(findNums, nums) {
+  let map = {}, stack = [];
+  nums.forEach((num) => {
+    while (stack.length > 0 && stack[stack.length - 1] < num) {
+      map[stack.pop()] = num;
+    }
+    stack.push(num);
+  });
+
+  let fN = findNums.length;
+  for (let i = 0; i < fN; i++) {
+    findNums[i] = map[findNums[i]] || -1;
+  }
+  return findNums;
+};
+
 let nums1 = [4,1,2], nums2 = [1,3,4,2];
+console.log(nextGreaterElement(nums1, nums2));
 nums1 = [2, 4], nums2 = [1,2,3,4];
 console.log(nextGreaterElement(nums1, nums2));
