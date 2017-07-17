@@ -47,3 +47,20 @@ function inOrder(root) {
   inOrder(root.right);
 }
 //inOrder(root);// 1 2 3 4 6 7 9
+
+function inOrderIteratively(root) {
+  let node = root, stack = [], results = [];
+  while (node || stack.length > 0) {
+    if (node) {
+      stack.push(node);
+      node = node.left;
+    } else {
+      node = stack.pop();
+      results.push(node.val);
+      node = node.right;
+    }
+  }
+  return results;
+}
+console.log(inOrderIteratively(null));
+console.log(inOrderIteratively(root));
