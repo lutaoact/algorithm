@@ -30,7 +30,7 @@ var reverseBits = function(n) {
   return result;
 };
 
-console.log(reverseBits(1));
-console.log(reverseBits(0));
-console.log(reverseBits(5));
-console.log(reverseBits(43261596));
+console.log(reverseBits(1));//2147483648
+console.log(reverseBits(0));//0
+console.log(reverseBits(5));//2684354560
+console.log(reverseBits(43261596));//964176192
