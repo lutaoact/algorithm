@@ -31,3 +31,5 @@ console.log(romanToInt('MCMLIV'));
 console.log(romanToInt('MCMXC'));
 console.log(romanToInt('MMXIV'));
 console.log(romanToInt('IX'));
+console.log(romanToInt('VIII'));
+console.log(romanToInt('MMMCMXCIX'));
