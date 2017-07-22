@@ -25,7 +25,7 @@ var searchInsert = function(nums, target) {
   if (target > nums[hi]) return N;
 
   while (lo <= hi) {
-    mid = ~~((lo + hi) / 2);
+    mid = ((hi - lo) / 2 | 0) + lo;
     if (nums[mid] < target) {
       lo = mid + 1;
     } else if (nums[mid] > target) {
@@ -38,3 +38,4 @@ var searchInsert = function(nums, target) {
 };
 
 console.log(searchInsert([1, 3, 5, 6], 4));
+console.log(searchInsert([1, 3, 4, 5, 6], 4));
