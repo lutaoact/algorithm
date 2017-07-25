@@ -60,7 +60,7 @@ var diffWaysToCompute = function(input) {
   return results;
 };
 
-//动态规划缓存结果，但似乎并没有快啊
+//动态规划缓存结果，可以更快一些
 diffWaysToCompute = function(input) {
   let map = {
     '+': (a, b) => a + b,
@@ -105,8 +105,8 @@ diffWaysToCompute = function(input) {
           results.push(op(l, r));
         });
       });
-      dpMap[input] = results;
     }
+    dpMap[input] = results;
 
     return results;
   }
