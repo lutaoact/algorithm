@@ -27,6 +27,12 @@ String S consists only of alphanumerical characters (a-z and/or A-Z and/or 0-9) 
 String S is non-empty.
 */
 
+/*
+perl的正则表达式就可以搞定，很好写：
+my $str = '24A0R74KABCDEF';
+$str =~ s/(?<=\w)(?=(?:\w{3})+\b)/-/g;
+print $str; #24-A0R-74K-ABC-DEF
+*/
 /**
  * @param {string} S
  * @param {number} K
