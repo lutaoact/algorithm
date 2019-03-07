@@ -28,7 +28,7 @@ var combinationSum = function(candidates, target) {
 // 如果首先对candidates排序，可以适当优化，减少回溯次数，当值大于target时，提前结束
 combinationSum = function(candidates, target) {
   let N = candidates.length, results = [], tmpList = [];
-  candidates.sort();
+  candidates.sort((a, b) => a - b);
   backtrack(0, 0);
   return results;
 
@@ -37,12 +37,9 @@ combinationSum = function(candidates, target) {
       results.push(tmpList.slice());
       return;
     }
-    if (sum > target) {
-      return;
-    }
 
     for (let i = start; i < N; i++) {
-      if (candidates[i] > target) break;
+      if (sum + candidates[i] > target) break;
 
       tmpList.push(candidates[i]);
       backtrack(i, sum + candidates[i]);
@@ -51,8 +48,12 @@ combinationSum = function(candidates, target) {
   }
 };
 
-let candidates = [2,3,6,7], target = 7;
-console.log(combinationSum(candidates, target));
+let candidates, target;
+//candidates = [2,3,6,7], target = 7;
+//console.log(combinationSum(candidates, target));
+//
+//candidates = [2,3,5], target = 8;
+//console.log(combinationSum(candidates, target));
 
-candidates = [2,3,5], target = 8;
+candidates = [3,12,9,11,6,7,8,5,4], target = 15;
 console.log(combinationSum(candidates, target));
