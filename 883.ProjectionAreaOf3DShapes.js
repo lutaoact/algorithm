@@ -29,6 +29,28 @@ var projectionArea = function(grid) {
   return result;
 };
 
+// 只遍历一次grid
+projectionArea = function(grid) {
+  let result = 0, N = grid.length;
+  let fmax = 0; //save the max num in each row
+  let smax = Array(N).fill(0); //save the max num in each column
+
+  for (let i = 0; i < N; i++) {
+    for (let j = 0; j < N; j++) {
+      if (grid[i][j] > 0) result += 1;
+      if (grid[i][j] > fmax) fmax = grid[i][j];
+      if (grid[i][j] > smax[j]) smax[j] = grid[i][j];
+      if (i === N - 1) {
+        result += smax[j];
+      }
+    }
+    result += fmax;
+    fmax = 0;
+  }
+
+  return result;
+}
+
 let grid;
 grid = [[2]];
 console.log(projectionArea(grid));
