@@ -32,3 +32,19 @@ function depth(root) {
   return 1 + Math.max(depth(root.left), depth(root.right));
 }
 console.log(depth(root));
+
+function invertTree(root) {
+  if (root === null) return null;
+
+  let tmp = root.left;
+  root.left = invertTree(root.right);
+  root.right = invertTree(tmp);
+  return root;
+}
+
+function invertTreeIteratively(root) {
+  if (root === null) return null;
+
+}
+
+console.log(invertTree(root));
