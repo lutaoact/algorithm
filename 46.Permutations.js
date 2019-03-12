@@ -69,6 +69,29 @@ permute = function(nums) {
   }
 };
 
+permute = function(nums) {
+  let N = nums.length, results = [];
+  backtrack(0);
+  return results;
+
+  function backtrack(start) {
+    if (start >= N - 1) {
+      results.push(nums.slice());
+      return;
+    }
+    for (let i = start; i < N; i++) {
+      swap(nums, i, start);
+      backtrack(start + 1);
+      swap(nums, i, start);
+    }
+  }
+  function swap(A, i, j) {
+    let tmp = A[i];
+    A[i] = A[j];
+    A[j] = tmp;
+  }
+};
+
 console.log(permute([1,2,3]));
 console.log(permute([1,2,3,4]));
 console.log(permute([1]));

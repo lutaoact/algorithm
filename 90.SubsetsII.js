@@ -30,16 +30,16 @@ If nums = [1,2,2], a solution is:
 var subsetsWithDup = function(nums) {
   let N = nums.length, results = [], tmpList = [];
   nums.sort((a, b) => a - b);
-  backtrack(0, tmpList);
+  backtrack(0);
   return results;
 
-  function backtrack(start, tmpList) {
+  function backtrack(start) {
     results.push(tmpList.slice());
 
     for (let i = start; i < N; i++) {
       if (i > start && nums[i] === nums[i - 1]) continue;//重复元素不处理
       tmpList.push(nums[i]);
-      backtrack(i + 1, tmpList);
+      backtrack(i + 1);
       tmpList.pop();
     }
   }
