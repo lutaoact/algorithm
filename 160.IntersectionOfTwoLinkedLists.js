@@ -37,6 +37,7 @@ function ListNode(val) {
 var getIntersectionNode = function(headA, headB) {
   if (headA === null && headB === null) return null;
 
+  //值为null的时候，指向另一条列表的头指针，就相当于A后面接上B，B后面接上A，这样两个列表的节点数在相交的地方正好相等，于是即可找到交点
   let a = headA, b = headB;
   while (a !== b) {
     a = a === null ? headB : a.next;
