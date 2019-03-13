@@ -51,6 +51,31 @@ var combinationSum3 = function(k, n) {
   }
 };
 
+// 优化剪枝
+combinationSum3 = function(k, n) {
+  let results = [], tmpList = [];
+
+  backtrack(tmpList, 1, n);
+
+  return results;
+
+  function backtrack(tmpList, start, remain) {
+    if (tmpList.length === k) {
+      if (remain === 0) results.push(tmpList.slice());
+      return
+    }
+
+    // 最多k个元素，k - tmpList.length为还需要增加的元素个数，那么[i..9]之间最少要有k - tmpList.length个元素，那么i的最大值就是9 - (k - tmpList.length) + 1
+    for (let i = start; i <= 9 - (k - tmpList.length) + 1; i++) {
+      if (remain - i < 0) break;
+
+      tmpList.push(i);
+      backtrack(tmpList, i + 1, remain - i);
+      tmpList.pop();
+    }
+  }
+};
+
 console.log(combinationSum3(3, 7));
 console.log(combinationSum3(3, 9));
 console.log(combinationSum3(4, 11));

@@ -34,7 +34,7 @@ var combinationSum22 = function(candidates, target) {
   backtrack(0, target);
   return results;
 
-  function backtrack(start, remain, time) { //参数time用来标记
+  function backtrack(start, remain) { //参数time用来标记
     if (remain === 0) {
       results.push(tmpList.slice());
       return;

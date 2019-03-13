@@ -29,8 +29,8 @@ If nums = [1,2,3], a solution is:
 //https://discuss.leetcode.com/topic/46159/a-general-approach-to-backtracking-questions-in-java-subsets-permutations-combination-sum-palindrome-partitioning
 //回溯法，从当前元素的下一个元素开始，因为之前的元素都已经处理完了
 var subsets = function(nums) {
-  let N = nums.length, results = [], tmpList = [];
-  backtrack(0, tmpList);
+  let N = nums.length, results = [];
+  backtrack(0, []);
   return results;
 
   function backtrack(start, tmpList) {

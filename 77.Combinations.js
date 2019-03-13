@@ -43,4 +43,26 @@ var combine = function(n, k) {
   }
 };
 
+// 优化剪枝
+combine = function(n, k) {
+  let tmpList = [], results = [];
+  backtrack(1, tmpList);
+  return results;
+
+  function backtrack(start, tmpList) {
+    if (tmpList.length === k) {
+      results.push(tmpList.slice());
+      return;
+    }
+
+    // 还有k - tmpList.length个空位, 所以,[i...n]中至少要包含k - tmpList.length个元素
+    // i最多为 n - (k - tmpList.length) + 1
+    for (let i = start; i <= n - (k - tmpList.length) + 1; i++) {
+      tmpList.push(i);
+      backtrack(i + 1, tmpList);//元素不能重复，所以从i+1开始
+      tmpList.pop();
+    }
+  }
+};
+
 console.log(combine(4, 2));

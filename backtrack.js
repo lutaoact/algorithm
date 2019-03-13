@@ -12,8 +12,7 @@ function subsets(A) {
     }
   }
 }
-
-console.log(subsets([1, 2, 3]));
+//console.log(subsets([1, 2, 3]));
 
 function permute(nums) {
   let N = nums.length, results = [], tmpList = [], map = {};
@@ -36,4 +35,26 @@ function permute(nums) {
     }
   }
 }
-console.log(permute([1, 2, 3]));
+//console.log(permute([1, 2, 3]));
+
+// leetcode 77
+function combine(n, k) {
+  let results = [];
+  backtrack(1, []);
+  return results;
+
+  function backtrack(start, tmpList) {
+    if (tmpList.length === k) {
+      results.push(tmpList.slice());
+      return;
+    }
+
+    for (let i = start; i <= n; i++) {
+      tmpList.push(i);
+      backtrack(i + 1, tmpList);
+      tmpList.pop();
+    }
+  }
+}
+console.log(combine(4, 2));
+console.log(combine(4, 5));
