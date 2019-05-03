@@ -8,7 +8,7 @@ function quickSortHelper(nums, left, right) {
     nums[l] = nums[r];
 
     while (l < r && nums[l] <= pivot) l++;
-    nums[r] = nums[l]
+    nums[r] = nums[l];
   }
   nums[l] = pivot;
 
